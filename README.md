@@ -2,11 +2,22 @@
 
 A tool to download all attachments from ClassDojo parent accounts.
 
-## Disclaimer
+## DISCLAIMER
 
-This tools is for personal use only and is not intended for commercial use.
-Do not use to overwhelm classdojo servers or gain access to unauthroized resources.
-Use it at your own risk.
+THIS TOOLS IS FOR PERSONAL USE ONLY AND IS NOT INTENDED FOR COMMERCIAL USE.
+DO NOT USE TO OVERWHELM CLASSDOJO SERVERS OR GAIN ACCESS TO UNAUTHROIZED RESOURCES.
+USE IT AT YOUR OWN RISK.
+
+## Motivation
+
+[Classdojo](https://www.classdojo.com) is an amazing platform for schools to
+share posts with parents organized by class/teacher. Parents can like and comment
+on posts that can contain photos, videos or any attachments. With heavy usage,
+you start feeling drown in many posts and you cannot easily access older attachments
+or search for them by type, class, teacher or date. If this sounds familiar, this
+tool is for you. It downloads all attachments and organizes them in a folder-like
+structure so that you can find any file easily. Files are time-stamped, so you
+can sort them by date and see a chronological order where new files come earlier.
 
 ## Requirements
 
@@ -58,4 +69,4 @@ Class Name
       slides1.ppt
 ```
 
-This output is stored on the directory `./downloads` as per the above example.
+This output is stored in the directory `./downloads` as per the above example.
