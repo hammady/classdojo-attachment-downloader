@@ -2,6 +2,12 @@
 
 A tool to download all attachments from ClassDojo parent accounts.
 
+## Disclaimer
+
+This tools is for personal use only and is not intended for commercial use.
+Do not use to overwhelm classdojo servers or gain access to unauthroized resources.
+Use it at your own risk.
+
 ## Requirements
 
 - [Docker](https://docs.docker.com/install/)
