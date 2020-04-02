@@ -10,6 +10,9 @@ from datetime import datetime
 def main():
 
   base_out = "/downloads"
+  errors = 0
+  skipped = 0
+  total = 0
 
   # load from file
   with open('/feeds/singlefeed.json') as json_file:
@@ -38,18 +41,25 @@ def main():
             _filename = _metadata.get("filename")
         _type_dir = os.path.join(_post_dir, _type)
         _file = os.path.join(_type_dir, _filename)
+        total += 1
 
         if os.path.isfile(_file):
           print("Skipping", _file, "(exists)")
+          skipped += 1
         else:
           # download attachment
           os.makedirs(_type_dir, exist_ok=True)
           print(_path, '->', _file)
-          subprocess.call(["curl", "-fsS", "--cookie", "/feeds/classdojo.cookie", "-o", str(_file), _path])
-          # set timestamp for downloaded file to post timestamp
-          _dt = datetime.fromisoformat(_dt_str.replace("Z", "+00:00"))
-          _ts = time.mktime(_dt.timetuple())
-          os.utime(_file, times=(_ts, _ts))
+          ret = subprocess.call(["curl", "-fsS", "--cookie", "/feeds/classdojo.cookie", "-o", str(_file), _path])
+          if ret == 0:
+            # set timestamp for downloaded file to post timestamp
+            _dt = datetime.fromisoformat(_dt_str.replace("Z", "+00:00"))
+            _ts = time.mktime(_dt.timetuple())
+            os.utime(_file, times=(_ts, _ts))
+          else:
+            errors += 1
+  print("Finished processing", total, "attachment(s) with", errors, "error(s) and",
+        skipped, "skipped file(s)")
 
 if __name__ == "__main__":
     main()
