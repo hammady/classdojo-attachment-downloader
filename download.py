@@ -6,6 +6,7 @@ import json
 import time
 import subprocess
 from datetime import datetime
+import hashlib
 
 def main():
 
@@ -33,12 +34,13 @@ def main():
         _att_id = _att["_id"]
         _path = _att["path"]
 
-        _, ext = os.path.splitext(_path)
-        _filename = _att_id + ext
         _metadata = _att.get("metadata")
-        if _metadata:
-          if _metadata.get("filename"):
-            _filename = _metadata.get("filename")
+        if _metadata and _metadata.get("filename"):
+          _filename = _metadata.get("filename")
+        else:
+          _, ext = os.path.splitext(_path)
+          _path_hash = hashlib.sha224(_path.encode('utf-8')).hexdigest()
+          _filename = _path_hash + ext
         _type_dir = os.path.join(_post_dir, _type)
         _file = os.path.join(_type_dir, _filename)
         total += 1
